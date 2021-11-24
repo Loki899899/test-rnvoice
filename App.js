@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import Voice from 'react-native-voice';
+// import Voice from 'react-native-voice';
+import Voice from '@react-native-community/voice';
 import {
   Button,
   SafeAreaView,
@@ -67,8 +68,8 @@ const App = () => {
   Voice.onSpeechVolumeChanged = onSpeechVolumeChanged;
   const startRecognizing = async () => {
     try {
-      setRecognizing(true)
       await Voice.start('en-IN');
+      setRecognizing(true)
     } catch (e) {
       console.error(e);
     }
@@ -76,9 +77,9 @@ const App = () => {
   
   const stopRecognizing = async () => {
     try {
-      console.log('stopped')
-      setRecognizing(false)
       await Voice.stop();
+      setRecognizing(false)
+      console.log('stopped')
     } catch (e) {
       console.error(e);
     }
@@ -93,9 +94,7 @@ const App = () => {
     <SafeAreaView style={backgroundStyle}>
       <View style={{ flex: 1 }}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <Button onPress={() => { console.log(Voice) }} title="get"></Button>
-        <Button  title="start"></Button>
-        <Button onPress={stopRecognizing} title="stop"></Button>
+
         <Text style={{ color: 'white' }}>Pitch {pitch}</Text>
         <View>
           <Text></Text>
